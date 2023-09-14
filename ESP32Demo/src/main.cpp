@@ -1,52 +1,55 @@
-
 #include <Arduino.h>
-// #include <BluetoothSerial.h>
 
-// BluetoothSerial SerialBT;
-int i;
-// 定义引脚
-int ledPin = 2;
+const int trigPin = 2; // 超声波传感器的Trig引脚连接到ESP32的GPIO2
+const int echoPin = 4; // 超声波传感器的Echo引脚连接到ESP32的GPIO4
+int servoPin = 14;
+
+void rotateServo(int targetAngle)
+{
+  int pulseWidth = map(targetAngle, 0, 180, 500, 2400);
+  digitalWrite(servoPin, HIGH);
+  delayMicroseconds(pulseWidth);
+  digitalWrite(servoPin, LOW);
+  delay(20);
+}
+
 void setup()
 {
-    // 蓝牙模块
-    // Serial.begin(115200);
-    // SerialBT.begin("nndty"); // 如果没有参数传入则默认是蓝牙名称是: "ESP32"   
-    // // SerialBT.setPin("123456");   // 蓝牙连接的配对码
-    // Serial.printf("BT initial ok and ready to pair. \r\n");
-
-    // 将小灯引脚设为输出模式
-    pinMode(ledPin, OUTPUT);
+  Serial.begin(115200); // 初始化串行通信，波特率设置为115200
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  pinMode(servoPin, OUTPUT);
 }
 
 void loop()
 {
-    // 蓝牙模块
-    // if (Serial.available())
-    // {
-    //     SerialBT.write(Serial.read());
-    // }
-    // if (SerialBT.available())
-    // {
-    //     Serial.write(SerialBT.read());
-    // }
-    // delay(1);
+  long duration;
+  int distance;
 
-    // 频闪小灯
-    // analogWrite(ledPin, 1000); // 点亮LED
-    // delay(1000); // 延时1000毫秒
-    // analogWrite(ledPin, 0); // 关闭LED
-    // delay(1000); // 延时1000毫秒
+  // 发送超声波脉冲
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
 
-    // 呼吸灯
-    for (i = 0; i < 255; i++)
-    {
-        analogWrite(ledPin, i);
-        delay(10);
-    }
-    delay(1000); // 暂停5秒
-    for (i = 255; i >= 0; i--)
-    {
-        analogWrite(ledPin, i);
-        delay(10);
-    }
+  // 计算回波时间
+  duration = pulseIn(echoPin, HIGH);
+
+  // 将回波时间转换为距离（单位：厘米）
+  distance = duration * 0.034 / 2;
+
+  // 打印距离到串行监视器
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+
+  if (distance < 20) // 距离小于阈值，开盖
+  {
+    rotateServo(90); // 控制开盖
+    delay(5000); // 暂停五秒
+    rotateServo(0); // 控制关盖
+  }
+
+  delay(1000); // 每隔1秒进行一次测量
 }
