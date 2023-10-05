@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "samd51.h": "c",
+        "iterator": "cpp",
+        "new": "cpp"
+    }
+}

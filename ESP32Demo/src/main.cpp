@@ -1,18 +1,13 @@
-#include <../lib/Inductive/Inductive.h>
-// #include <../lib/LedDemo/LedDemo.h>
+#include <Arduino.h>
+#include <../lib/Radar/Radar.h>
 
-// 将对应引脚数据发送给类
-Inductive inductive_main(2, 4, 14);
-// LedDemo ledDemo_main(2);
+Radar Radar_main(14, 2, 4);
 
 void setup()
 {
-    inductive_main.setup();
-    // ledDemo_main.setup();
+    Radar_main.setup();
 }
-
 void loop()
 {
-    inductive_main.loop();
-    // ledDemo_main.loop();
+    Radar_main.loop();
 }
