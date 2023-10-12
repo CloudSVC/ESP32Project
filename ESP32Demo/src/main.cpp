@@ -10,8 +10,5 @@ void setup()
 
 void loop()
 {
-  Move_main.up();
-  delay(1000);
-  Move_main.down();
-  delay(1000);
+  Move_main.left();
 }

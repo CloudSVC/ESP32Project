@@ -16,8 +16,8 @@
 #define IN5 32 // 定义IN5为Digital Pin 32
 #define IN6 33 // 定义IN6为Digital Pin 33 
 // 电机4
-#define IN7 34 // 定义IN7为Digital Pin 34
-#define IN8 35 // 定义IN8为Digital Pin 35
+#define IN7 22 // 定义IN7为Digital Pin 22
+#define IN8 23 // 定义IN8为Digital Pin 23
 
 Move::Move()
 {
