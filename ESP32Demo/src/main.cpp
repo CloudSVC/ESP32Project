@@ -1,13 +1,17 @@
 #include <Arduino.h>
-#include <../lib/Radar/Radar.h>
+#include <../lib/Move/Move.h>
 
-Radar Radar_main(14, 2, 4);
+Move Move_main;
 
 void setup()
 {
-    Radar_main.setup();
+  Move_main.setup();
 }
+
 void loop()
 {
-    Radar_main.loop();
+  Move_main.up();
+  delay(1000);
+  Move_main.down();
+  delay(1000);
 }
