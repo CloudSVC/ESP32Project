@@ -1,0 +1,26 @@
+#include <Arduino.h>
+
+const int txPin = 1; // 替换为您要使用的GPIO引脚
+int targetNumber = 5; // 要发送的目标数字
+
+void setup() {
+  pinMode(txPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(txPin, targetNumber); // 发送目标数字
+  delay(10); // 每秒发送一次
+}
+
+
+法二
+#include <Arduino.h>
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.println("aaa");
+  delay(1000);
+}

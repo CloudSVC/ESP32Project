@@ -1,0 +1,27 @@
+
+#include <Arduino.h>
+
+const int ledPin = 2; // 用于控制小灯的引脚
+int targetNumber = 5; // 您要匹配的目标数字
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(115200);
+}
+
+void loop()
+{
+  if (Serial.available() > 0)
+  {
+    int receivedData = Serial.parseInt(); // 从串口读取整数
+    if (receivedData == targetNumber)
+    {
+      digitalWrite(ledPin, HIGH); // 如果匹配目标数字，打开小灯
+    }
+    else
+    {
+      digitalWrite(ledPin, LOW); // 否则关闭小灯
+    }
+  }
+}

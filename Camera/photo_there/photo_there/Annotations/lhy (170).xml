@@ -1,0 +1,27 @@
+<annotation>
+    <folder>zhaopian_three</folder>
+    <filename>lhy (170).jpg</filename>
+    <path>D:\object_file\label_img\data_od\zhaopian_three\lhy (170).jpg</path>
+    <source>
+        <database>Unknown</database>
+    </source>
+    <size>
+        <width>2736</width>
+        <height>3648</height>
+        <depth>3</depth>
+    </size>
+    <segmented>0</segmented>
+    
+	<object>
+        <name>object</name>
+        <pose>Unspecified</pose>
+        <truncated>0</truncated>
+        <difficult>0</difficult>
+        <bndbox>
+            <xmin>769</xmin>
+            <ymin>10</ymin>
+            <xmax>1781</xmax>
+            <ymax>2804</ymax>
+        </bndbox>
+    </object>
+</annotation>

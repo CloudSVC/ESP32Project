@@ -10,5 +10,5 @@ void setup()
 
 void loop()
 {
-  Move_main.left();
+  Move_main.up();
 }
